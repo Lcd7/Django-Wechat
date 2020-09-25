@@ -1,0 +1,33 @@
+<h1>新建项目</h1>
+django-admin.py startproject project_name
+
+<h1>新建app</h1>
+python manage.py startapp app_name
+
+<h1>创建数据库表 或 更改数据库表或字段</h1>
+python manage.py makemigrations
+python manage.py migrate
+
+<h1>使用开发服务器</h1>
+python manage.py runserver
+python manage.py runserver 8001     指定端口
+
+<h1>清空数据库</h1>
+python manage.py flush
+
+<h1>创建超级管理员</h1>
+python manage.p createsuperuser
+<h2>修改用户密码</h2>
+pyhton manage.py changepassword username
+
+<h1>django项目环境终端</h1>
+python manage.py shell
+
+<h1>数据库数据导入导出</h1>
+<h2>导出： 不指定appname则导出所有的app数据</h2>
+python manage.py dumpdata [appname] > appname_data.json
+<h2>导入： 不需要指定appname</h2>
+导入数据时，models的CharField字段一定要写max_length,不然超出最大长度就会报错
+python manage.py loaddata appname_data.json
+<h2>备注：常用：导入用户数据：</h2>
+python manage.py dumpdata auth > auth.json

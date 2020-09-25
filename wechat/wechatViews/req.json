@@ -1,0 +1,25 @@
+{
+    "perception":
+    {
+        "inputText":
+        {
+            "text": ""
+        },
+
+        "selfInfo":
+        {
+            "location":
+            {
+                "city": "成都",
+                "province": "四川",
+                "street": "太古里"
+            }
+        }
+    },
+
+    "userInfo":
+    {
+        "apiKey": "d3b9a925f80f455bb20048419a0efb1f",
+        "userId": "zhou"
+    }
+}
