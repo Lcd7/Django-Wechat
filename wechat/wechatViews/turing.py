@@ -5,7 +5,7 @@ import requests
 import traceback
 
 api_url = "http://openapi.tuling123.com/openapi/api/v2"
-json_path = r'wechat\wechatViews\req.json'
+json_path = r'wechat\wechatViews\turing.json'
 
 class TuringDome(object):
     def __init__(self,json_path="",api_url=""):

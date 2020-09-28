@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+env_dist = os.environ
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -77,8 +78,7 @@ WSGI_APPLICATION = 'doomfist.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-import os 
-env_dist = os.environ
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -135,6 +135,13 @@ ADMIN_IP = [
     '192.168.8.37',
 ]
 
+ACCESS_TOKEN = '37_KEa6StIkanQ6vfiVya_2I7xfxGMcMXy2EiYrOdNStpaFKT56wKhvLmnRh3c_klZ8feQm807miAIHpR2rnD66KaQePNQzWHIMvWqqiUyJehhp4qgUZZGgBZclI5iB2EG2cawIs35EjY_joVQkZJGjAIAFPM'
+
+WXTOKEN = env_dist.get('WXToken')
+# WXAPPID = env_dist.get('WXAppid')         # 机密
+# WXAPPSECRET = env_dist.get('WXAppsecret') # 机密
+WXAPPID = 'wxd1b5b8e835a07348'
+WXAPPSECRET = '19aef1ef92b95619bae56839e242f94f'
 
 LOGGING = {
     'version': 1,

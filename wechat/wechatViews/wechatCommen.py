@@ -8,6 +8,8 @@ import requests
 import traceback
 
 from wechat.wechatViews.textMsg import TextMsg
+from wechat.wechatViews.eventMsg import EventMsg
+from wechat.wechatViews.imgMsg import ImgMsg
 
 class WechatMsg:
     @classmethod
@@ -55,8 +57,15 @@ class WechatMsg:
                     replyMsg = TextMsg(xmlData)
                     return replyMsg.send_text()
                 elif MsgType == 'image':
-                    replyMsg = TextMsg(xmlData)     
+                    replyMsg = ImgMsg(xmlData)     
                     return replyMsg.send_text()
+                elif MsgType == 'event':
+                    replyMsg = EventMsg(xmlData)
+                    if replyMsg.sendImg:
+                        return replyMsg.send_img()
+                    else:
+                        return replyMsg.send_text()
+
                 elif MsgType == 'voice':
                     replyMsg = TextMsg(xmlData)     
                     return replyMsg.send_text()
