@@ -3,6 +3,7 @@
 import json
 import requests
 import traceback
+from doomfist.log import log
 
 api_url = "http://openapi.tuling123.com/openapi/api/v2"
 json_path = r'wechat\wechatViews\turing.json'
@@ -42,15 +43,14 @@ class TuringDome(object):
         '''取得机器人返回的语句并输出'''
         try:
             self.text_input, self.userId = text_input, userId
-            # print(f"跟{userId}对话")
             response_dict = self.urllibRequestResponse()
             try:
                 results_text = response_dict.get('results')[0]['values']['text']
             except:
                 results_text = response_dict.get('results')[-1]['values']['text'] + response_dict.get('results')[0]['values']['url']
         except Exception as e:
-            print(f'图灵机器人报错：{e}')
-            print(traceback.format_exc())
+            log.error(f'图灵机器人报错：{e}')
+            log.error(traceback.format_exc())
             return '小茗出错了哦，请稍后再跟小茗聊天吧~'
         return results_text
 
@@ -60,7 +60,7 @@ class TuringDome(object):
                 self.getTuringResponse(self.text_input, '1')
                 self.text_input = input('请输入我的问话\n我：')
             else:
-                print("*****结束对话！*****")
+                log.info("*****结束对话！*****")
                 break
 
 turingDome = TuringDome(json_path = json_path, api_url = api_url)

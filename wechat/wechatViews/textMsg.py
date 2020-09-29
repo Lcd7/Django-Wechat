@@ -2,15 +2,21 @@ import time
 import datetime
 import requests
 import traceback
+import random
 
+from django.conf import settings
+from doomfist.log import log
 from wechat.wechatViews.baseMsg import Msg
 from wechat.wechatViews.turing import turingDome
 from wechat.models import PersonalLog
+from wechat.wechatViews.rainbow import ShaDiao
+from wechat.models import PersonalImg
 
-# self.ToUserName[7:].replace("_", "") = 'cQ8bDxSfyUxbAj43HQm4': #我
+# self.ToUserName[7:].replace("_", "") = 'cQ8bDxSfyUxbAj43HQm4':
 
 class TextMsg(Msg):
     def __init__(self, xmlData):
+        self.sendImg = False
         super().__init__(xmlData)
         self.get_msg(xmlData)
         self.do_func()
@@ -19,35 +25,46 @@ class TextMsg(Msg):
         '''
         对用户发送的图/文信息进行分类回复
         '''
-        # 图片
-        if self.PicUrl:
-            # print(f'PicUrl:{self.PicUrl}')
-            self.ReturnDict['Content'] = '已收到图片OVO'
         # 表情包
-        elif self.Content == '【收到不支持的消息类型，暂无法显示】':
+        if self.Content == '【收到不支持的消息类型，暂无法显示】':
             self.ReturnDict['Content'] = '表情包我还看不懂噢'
+        elif self.Content == '关键字':
+            content = "关键字：\n" + \
+                "“快递123456”查询快递情况\n" + \
+                "“笔记XXX”记录笔记\n" + \
+                "“获取笔记”获取所有笔记\n" + \
+                "“电影”给你网址自己去找噢\n" + \
+                "“音乐”可以搜歌可以解码vip歌\n" + \
+                "“屁”获得精美彩虹屁一个\n" + \
+                "“照片”随机给你最近一张照片\n" + \
+                "“杂志”阮一峰科技日志\n"
+            self.ReturnDict['Content'] = content
 
-        # '''
         # 关键字功能
-        # '''
         # 记录个人日志
-        elif self.Content[:4] == '笔记':
+        elif self.Content[:2] == '笔记':
             self.make_note()
-            
         # 获取个人日志
         elif self.Content == '获取笔记':
             self.take_note()
-
         # 快递
         elif self.Content[:2] == '快递':
             self.check_express()
-
-        # '''
-        # 回复功能
-        # '''
-        # 语音无消息
-        elif not self.Content:
-            self.ReturnDict['Content'] = '不知道你在说什么噢'
+        # 电影
+        elif self.Content == '电影':
+            self.ReturnDict['Content'] = "http://pianyuan.la/\n这里电影电视剧资源还是挺全的，自己去找吧"
+        # 音乐
+        elif self.Content == '音乐':
+            self.ReturnDict['Content'] = "http://tool.liumingye.cn/music/?page=homePage\n这里可以搜全网大部分的音乐，还可以把下载的vip歌曲解码噢"
+        # 阮一峰杂志
+        elif self.Content == '杂志':
+            self.ReturnDict['Content'] = 'http://www.ruanyifeng.com/blog/\n周五划水必备'
+        # 屁
+        elif self.Content == '屁':
+            self.ReturnDict['Content'] = ShaDiao.get_one_p()
+        # 照片
+        elif self.Content == '照片':
+            self.pictures()
 
         # 语音和文字都由机器人回答
         else:
@@ -106,7 +123,7 @@ class TextMsg(Msg):
             try:
                 PersonalLog.objects.create(userid = self.ToUserName, content = self.Content[4:], pub_date = pub_date)
             except:
-                print(traceback.format_exc())
+                log.info(traceback.format_exc())
                 self.ReturnDict['Content'] = '好像记录失败咯，先回复“查询日志”来查询一下吧。'
             else:
                 self.ReturnDict['Content'] = '记录成功咯'
@@ -115,8 +132,36 @@ class TextMsg(Msg):
         content_list = []
         try:
             notes = PersonalLog.objects.filter(userid = self.ToUserName).order_by('pk')
-            for note in notes:
-                content_list.append(str(note.pub_date)[:-13] + "\n" + note.content)
-            self.ReturnDict['Content'] = '\n'.join(content_list)
+            if not notes:
+                self.ReturnDict['Content'] = '你还没有笔记噢'
+            else:
+                for note in notes:
+                    content_list.append(str(note.pub_date)[:-13] + "\n" + note.content)
+                self.ReturnDict['Content'] = '\n'.join(content_list)
         except:
-            print(traceback.format_exc())
+            log.info(traceback.format_exc())
+
+    def pictures(self):
+        imgs = PersonalImg.objects.filter(userid = self.ToUserName)
+        count = imgs.count()
+        if count == 0:
+            self.ReturnDict['Content'] = '给我发一张照片吧，也可以多发几张噢'
+        else:
+            img = random.choice(imgs)
+            self.ReturnDict['PicUrl'] = img.PicUrl
+            self.ReturnDict['MediaId'] = img.MediaId
+            self.sendImg = True
+
+    def send_img(self):
+        XmlForm = """
+        <xml>
+        <ToUserName><![CDATA[{ToUserName}]]></ToUserName>
+        <FromUserName><![CDATA[{FromUserName}]]></FromUserName>
+        <CreateTime>{CreateTime}</CreateTime>
+        <MsgType><![CDATA[image]]></MsgType>
+        <Image>
+        <MediaId><![CDATA[{MediaId}]]></MediaId>
+        </Image>
+        </xml>
+        """
+        return XmlForm.format(**self.ReturnDict)

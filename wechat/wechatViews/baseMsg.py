@@ -13,13 +13,13 @@ class Msg(object):
         self.MediaId = None
         self.Event = None
         self.EventKey = None
+        self.Recognition = None
 
         self.ReturnDict = dict()
         self.ReturnDict['ToUserName'] = self.ToUserName
         self.ReturnDict['FromUserName'] = self.FromUserName
         self.ReturnDict['MsgType'] = self.MsgType
         self.ReturnDict['CreateTime'] = int(time.time())
-        # print(f'fromUserNAme:{self.ToUserName}')
 
     def send_text(self):
         XmlForm = """

@@ -4,6 +4,7 @@ from django.contrib import admin
 from mysite.models import Article
 
 class ArticleAdmin(admin.ModelAdmin):
+    # 显示字段成员
     list_display = ('title', 'author', 'content_and_score')
     search_fields = ('title',)
  

@@ -38,7 +38,7 @@ class EventMsg(Msg):
         elif self.EventKey == 'SELFPIC':
             count = PersonalImg.objects.filter(userid = self.ToUserName).count()
             if count == 0:
-                self.ReturnDict['Content'] = '给我发一张你的照片吧，也可以多发几张噢'
+                self.ReturnDict['Content'] = '给我发一张照片吧，也可以多发几张噢'
             else:
                 imgs = PersonalImg.objects.filter(userid = self.ToUserName)
                 count = 0
@@ -48,7 +48,7 @@ class EventMsg(Msg):
                 self.sendImg = True
 
         elif self.Event == 'subscribe':
-            self.ReturnDict['Content'] = ShaDiao.get_one_p()
+            self.ReturnDict['Content'] = ShaDiao.get_one_p() + "回复“关键字”查看所有关键字"
         
                     
     def send_img(self):

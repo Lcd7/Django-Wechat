@@ -16,7 +16,6 @@ class ImgMsg(Msg):
         self.MediaId = xmlData.find('MediaId').text
         self.ReturnDict['PicUrl'] = self.PicUrl
         self.ReturnDict['MediaId'] = self.MediaId
-        print(self.MediaId)
 
     def do_func(self):
         url = f"https://api.weixin.qq.com/cgi-bin/media/upload?access_token={settings.ACCESS_TOKEN}&type=image"

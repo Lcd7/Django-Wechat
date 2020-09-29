@@ -43,7 +43,7 @@ def getlogger():
 
 
     #把log输出到当前目录下交usk.log的文件
-    filename = '%s/spiderlog.log' % ('./log')
+    filename = '%s/app.log' % ('./log')
 
     file_handler = TimedRotatingFileHandler(filename, when = 'D', interval = 1, backupCount = 7, encoding = 'utf-8')
     file_handler.setLevel(logging.INFO)

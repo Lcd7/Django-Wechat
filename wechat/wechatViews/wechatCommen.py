@@ -7,15 +7,17 @@ import time
 import requests
 import traceback
 
+from doomfist.log import log
 from wechat.wechatViews.textMsg import TextMsg
 from wechat.wechatViews.eventMsg import EventMsg
 from wechat.wechatViews.imgMsg import ImgMsg
+from wechat.wechatViews.voiceMsg import VoiceMsg
 
 class WechatMsg:
     @classmethod
     def runCommen(cls, request, _token):
         if request.method == 'GET':
-            print("验证微信身份")
+            log.info("验证微信身份")
             # 接收微信服务器get请求发过来的参数
             signature = request.GET.get('signature', None)
             timestamp = request.GET.get('timestamp', None)
@@ -50,12 +52,17 @@ class WechatMsg:
         '''
         try:
             webData = request.body
+            log.info(webData)
             xmlData = ET.fromstring(webData)
             MsgType = xmlData.find('MsgType').text
+            log.info(MsgType)
             try:
                 if MsgType == 'text':
                     replyMsg = TextMsg(xmlData)
-                    return replyMsg.send_text()
+                    if replyMsg.sendImg:
+                        return replyMsg.send_img()
+                    else:
+                        return replyMsg.send_text()
                 elif MsgType == 'image':
                     replyMsg = ImgMsg(xmlData)     
                     return replyMsg.send_text()
@@ -65,10 +72,10 @@ class WechatMsg:
                         return replyMsg.send_img()
                     else:
                         return replyMsg.send_text()
-
                 elif MsgType == 'voice':
-                    replyMsg = TextMsg(xmlData)     
+                    replyMsg = VoiceMsg(xmlData)     
                     return replyMsg.send_text()
+
                 elif MsgType == 'video':           
                     return replyMsg.send_text()
                 elif MsgType == 'shortvideo':
@@ -79,7 +86,7 @@ class WechatMsg:
                     MsgType == 'link'
                     return replyMsg.send_text()
             except:
-                print(traceback.format_exc())
+                log.error(traceback.format_exc())
         except Exception as e:
             return e
 

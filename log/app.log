@@ -1,0 +1,79 @@
+[2020-09-29 10:11:08,352]:[autoreload.py]:[line:597]:INFO: Watching for file changes with StatReloader
+[2020-09-29 10:11:11,050]:[connectionpool.py]:[line:734]:INFO: Starting new HTTPS connection (1): api.weixin.qq.com
+[2020-09-29 10:12:49,861]:[autoreload.py]:[line:217]:INFO: D:\Code\env\djtest1\doomfist\doomfist\settings.py changed, reloading.
+[2020-09-29 10:15:02,249]:[autoreload.py]:[line:217]:INFO: D:\Code\env\djtest1\doomfist\wechat\wechatViews\wechatCommen.py changed, reloading.
+[2020-09-29 10:15:19,517]:[autoreload.py]:[line:217]:INFO: D:\Code\env\djtest1\doomfist\wechat\wechatViews\__init__.py changed, reloading.
+[2020-09-29 10:15:22,021]:[autoreload.py]:[line:217]:INFO: D:\Code\env\djtest1\doomfist\wechat\wechatViews\textMsg.py changed, reloading.
+[2020-09-29 10:15:36,348]:[wechatCommen.py]:[line:19]:INFO: 验证微信身份
+[2020-09-29 10:17:44,655]:[wechatCommen.py]:[line:56]:INFO: event
+[2020-09-29 10:18:15,838]:[wechatCommen.py]:[line:56]:INFO: text
+[2020-09-29 10:18:19,550]:[wechatCommen.py]:[line:56]:INFO: text
+[2020-09-29 10:18:30,992]:[wechatCommen.py]:[line:56]:INFO: text
+[2020-09-29 10:18:30,994]:[connectionpool.py]:[line:202]:INFO: Starting new HTTP connection (1): openapi.tuling123.com
+[2020-09-29 10:19:05,293]:[autoreload.py]:[line:217]:INFO: D:\Code\env\djtest1\doomfist\wechat\wechatViews\textMsg.py changed, reloading.
+[2020-09-29 10:19:10,843]:[wechatCommen.py]:[line:56]:INFO: text
+[2020-09-29 10:19:26,202]:[wechatCommen.py]:[line:56]:INFO: text
+[2020-09-29 10:20:51,350]:[autoreload.py]:[line:217]:INFO: D:\Code\env\djtest1\doomfist\wechat\wechatViews\textMsg.py changed, reloading.
+[2020-09-29 10:20:55,286]:[wechatCommen.py]:[line:56]:INFO: text
+[2020-09-29 10:21:04,205]:[wechatCommen.py]:[line:56]:INFO: text
+[2020-09-29 10:21:18,622]:[wechatCommen.py]:[line:56]:INFO: text
+[2020-09-29 10:28:31,753]:[autoreload.py]:[line:217]:INFO: D:\Code\env\djtest1\doomfist\wechat\wechatViews\textMsg.py changed, reloading.
+[2020-09-29 10:28:44,538]:[wechatCommen.py]:[line:56]:INFO: text
+[2020-09-29 10:28:44,600]:[wechatCommen.py]:[line:87]:ERROR: Traceback (most recent call last):
+  File "D:\Code\env\djtest1\doomfist\wechat\wechatViews\wechatCommen.py", line 61, in autoreply
+    return replyMsg.send_img()
+AttributeError: 'TextMsg' object has no attribute 'send_img'
+
+[2020-09-29 10:29:01,593]:[autoreload.py]:[line:217]:INFO: D:\Code\env\djtest1\doomfist\wechat\wechatViews\textMsg.py changed, reloading.
+[2020-09-29 10:29:09,756]:[wechatCommen.py]:[line:56]:INFO: text
+[2020-09-29 10:29:13,375]:[wechatCommen.py]:[line:56]:INFO: text
+[2020-09-29 10:29:13,376]:[connectionpool.py]:[line:202]:INFO: Starting new HTTP connection (1): openapi.tuling123.com
+[2020-09-29 10:29:16,820]:[wechatCommen.py]:[line:56]:INFO: text
+[2020-09-29 10:29:21,850]:[wechatCommen.py]:[line:56]:INFO: text
+[2020-09-29 10:29:21,851]:[connectionpool.py]:[line:202]:INFO: Starting new HTTP connection (1): openapi.tuling123.com
+[2020-09-29 10:30:26,740]:[autoreload.py]:[line:217]:INFO: D:\Code\env\djtest1\doomfist\wechat\wechatViews\eventMsg.py changed, reloading.
+[2020-09-29 10:31:02,635]:[wechatCommen.py]:[line:56]:INFO: text
+[2020-09-29 10:31:02,635]:[connectionpool.py]:[line:202]:INFO: Starting new HTTP connection (1): openapi.tuling123.com
+[2020-09-29 10:33:54,517]:[wechatCommen.py]:[line:56]:INFO: voice
+[2020-09-29 10:33:54,561]:[wechatCommen.py]:[line:87]:ERROR: Traceback (most recent call last):
+  File "D:\Code\env\djtest1\doomfist\wechat\wechatViews\wechatCommen.py", line 75, in autoreply
+    replyMsg = TextMsg(xmlData)
+  File "D:\Code\env\djtest1\doomfist\wechat\wechatViews\textMsg.py", line 22, in __init__
+    self.do_func()
+  File "D:\Code\env\djtest1\doomfist\wechat\wechatViews\textMsg.py", line 45, in do_func
+    elif self.Content[:2] == '笔记':
+TypeError: 'NoneType' object is not subscriptable
+
+[2020-09-29 10:36:16,805]:[wechatCommen.py]:[line:56]:INFO: text
+[2020-09-29 10:36:46,814]:[autoreload.py]:[line:217]:INFO: D:\Code\env\djtest1\doomfist\wechat\wechatViews\textMsg.py changed, reloading.
+[2020-09-29 10:37:19,750]:[wechatCommen.py]:[line:56]:INFO: voice
+[2020-09-29 10:37:19,751]:[wechatCommen.py]:[line:88]:ERROR: Traceback (most recent call last):
+  File "D:\Code\env\djtest1\doomfist\wechat\wechatViews\wechatCommen.py", line 75, in autoreply
+    replyMsg = TextMsg(xmlData)
+  File "D:\Code\env\djtest1\doomfist\wechat\wechatViews\textMsg.py", line 22, in __init__
+    self.do_func()
+  File "D:\Code\env\djtest1\doomfist\wechat\wechatViews\textMsg.py", line 45, in do_func
+    elif self.Content[:2] == '笔记':
+TypeError: 'NoneType' object is not subscriptable
+
+[2020-09-29 10:38:27,375]:[autoreload.py]:[line:217]:INFO: D:\Code\env\djtest1\doomfist\wechat\wechatViews\wechatCommen.py changed, reloading.
+[2020-09-29 10:38:37,517]:[wechatCommen.py]:[line:54]:INFO: b'<xml><ToUserName><![CDATA[gh_9dd44dd2eb9f]]></ToUserName>\n<FromUserName><![CDATA[olC9U65v7xp9sVIyYFzLHutqe8jw]]></FromUserName>\n<CreateTime>1601347116</CreateTime>\n<MsgType><![CDATA[voice]]></MsgType>\n<MediaId><![CDATA[auGMmZEcYNe_q0hGjkz0eRkD3JQTGF8LpB6HWJ4oq0S10hyy1eGRs2akWRSWAITV]]></MediaId>\n<Format><![CDATA[amr]]></Format>\n<MsgId>22925775312211435</MsgId>\n<Recognition><![CDATA[]]></Recognition>\n</xml>'
+[2020-09-29 10:38:37,518]:[wechatCommen.py]:[line:57]:INFO: voice
+[2020-09-29 10:38:37,534]:[wechatCommen.py]:[line:89]:ERROR: Traceback (most recent call last):
+  File "D:\Code\env\djtest1\doomfist\wechat\wechatViews\wechatCommen.py", line 76, in autoreply
+    replyMsg = TextMsg(xmlData)
+  File "D:\Code\env\djtest1\doomfist\wechat\wechatViews\textMsg.py", line 22, in __init__
+    self.do_func()
+  File "D:\Code\env\djtest1\doomfist\wechat\wechatViews\textMsg.py", line 45, in do_func
+    elif self.Content[:2] == '笔记':
+TypeError: 'NoneType' object is not subscriptable
+
+[2020-09-29 10:45:47,623]:[autoreload.py]:[line:217]:INFO: D:\Code\env\djtest1\doomfist\wechat\wechatViews\baseMsg.py changed, reloading.
+[2020-09-29 10:47:13,183]:[autoreload.py]:[line:217]:INFO: D:\Code\env\djtest1\doomfist\wechat\wechatViews\wechatCommen.py changed, reloading.
+[2020-09-29 10:47:23,099]:[wechatCommen.py]:[line:55]:INFO: b'<xml><ToUserName><![CDATA[gh_9dd44dd2eb9f]]></ToUserName>\n<FromUserName><![CDATA[olC9U65v7xp9sVIyYFzLHutqe8jw]]></FromUserName>\n<CreateTime>1601347641</CreateTime>\n<MsgType><![CDATA[voice]]></MsgType>\n<MediaId><![CDATA[EZDB2vVmu0gl_uJHo1TimRHWc5RaY_y87r9plmPxaGAkTHhH511hJY1Kl7c7Cyqq]]></MediaId>\n<Format><![CDATA[amr]]></Format>\n<MsgId>22925786528093741</MsgId>\n<Recognition><![CDATA[]]></Recognition>\n</xml>'
+[2020-09-29 10:47:23,099]:[wechatCommen.py]:[line:58]:INFO: voice
+[2020-09-29 10:48:47,945]:[autoreload.py]:[line:217]:INFO: D:\Code\env\djtest1\doomfist\wechat\wechatViews\textMsg.py changed, reloading.
+[2020-09-29 10:49:18,537]:[autoreload.py]:[line:217]:INFO: D:\Code\env\djtest1\doomfist\wechat\wechatViews\voiceMsg.py changed, reloading.
+[2020-09-29 10:49:25,688]:[wechatCommen.py]:[line:55]:INFO: b'<xml><ToUserName><![CDATA[gh_9dd44dd2eb9f]]></ToUserName>\n<FromUserName><![CDATA[olC9U65v7xp9sVIyYFzLHutqe8jw]]></FromUserName>\n<CreateTime>1601347764</CreateTime>\n<MsgType><![CDATA[voice]]></MsgType>\n<MediaId><![CDATA[XfsLEfszXVKqZsfW4WCVtkGT_kEte_D8vmLilizJWZq68vAWRIqkSiC1fU1KdGMR]]></MediaId>\n<Format><![CDATA[amr]]></Format>\n<MsgId>22925786156638841</MsgId>\n<Recognition><![CDATA[]]></Recognition>\n</xml>'
+[2020-09-29 10:49:25,689]:[wechatCommen.py]:[line:58]:INFO: voice
+[2020-09-29 10:49:45,878]:[autoreload.py]:[line:217]:INFO: D:\Code\env\djtest1\doomfist\wechat\wechatViews\voiceMsg.py changed, reloading.

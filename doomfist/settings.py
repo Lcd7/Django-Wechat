@@ -78,7 +78,6 @@ WSGI_APPLICATION = 'doomfist.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -87,7 +86,12 @@ DATABASES = {
         'PASSWORD': env_dist.get('SqlPassword'),
     }
 }
-
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -135,32 +139,15 @@ ADMIN_IP = [
     '192.168.8.37',
 ]
 
-ACCESS_TOKEN = '37_KEa6StIkanQ6vfiVya_2I7xfxGMcMXy2EiYrOdNStpaFKT56wKhvLmnRh3c_klZ8feQm807miAIHpR2rnD66KaQePNQzWHIMvWqqiUyJehhp4qgUZZGgBZclI5iB2EG2cawIs35EjY_joVQkZJGjAIAFPM'
+ACCESS_TOKEN = ''
 
 WXTOKEN = env_dist.get('WXToken')
 # WXAPPID = env_dist.get('WXAppid')         # 机密
 # WXAPPSECRET = env_dist.get('WXAppsecret') # 机密
+
+# 测试号
 WXAPPID = 'wxd1b5b8e835a07348'
 WXAPPSECRET = '19aef1ef92b95619bae56839e242f94f'
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-        },
-    },
-    'formatters': {
-        'standard': {
-            'format': '[%(levelname)s][%(asctime)s]%(pathname)s][%(filename)s][%(module)s][%(funcName)s][%(lineno)d]: [%(message)s]'
-        }, # 对日志信息进行格式化，每个字段对应了日志格式中的一个字段，更多字段参考官网文档，我认为这些字段比较合适，输出类似于下面的内容
-        # INFO 2016-09-03 16:25:20,067 /home/ubuntu/mysite/views.py views.py views get 29: some info...
-    },
-    'loggers': {
-        'django.db.backends': {
-            'handlers': ['console'],
-            'level': 'DEBUG' if DEBUG else 'INFO',
-        },
-    },
-}
+# from doomfist.log import log
+# LOGGING = log
